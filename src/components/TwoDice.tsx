@@ -11,6 +11,28 @@ export function d6(): number {
     return 1 + Math.floor(Math.random() * 6);
 }
 
+export function checkEquality(num: number): string {
+    if (num == 1) {
+        return "Lose";
+    } else {
+        return "Win";
+    }
+}
+
 export function TwoDice(): JSX.Element {
-    return <div>Two Dice</div>;
+    const [diceOne, setOne] = useState<number>(2);
+    const [diceTwo, setTwo] = useState<number>(3);
+    return (
+        <div>
+            <span data-testid="left-die">{diceOne}</span>
+            <span data-testid="right-die">{diceTwo}</span>
+            <Button onClick={() => setOne(d6)}>Roll Left</Button>
+            <Button onClick={() => setTwo(d6)}>Roll Right</Button>
+            {diceOne == diceTwo ? (
+                <div> {checkEquality(diceOne)} </div>
+            ) : (
+                <div> </div>
+            )}
+        </div>
+    );
 }
