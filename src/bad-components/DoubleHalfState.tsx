@@ -1,3 +1,8 @@
 import { useState } from "react";
 
-export const [dhValue, setDhValue] = useState<number>(10);
+// const [dhValue, setDhValue] = useState<number>(10);
+
+export interface doubleHalfNum {
+    setDhValue: (newNum: number) => void;
+    dhValue: number;
+}
