@@ -18,18 +18,11 @@ export function EditMode(): JSX.Element {
         changeMode(event.target.checked);
     }
 
-    return (
-        <div>
-            <Form.Check
-                type="switch"
-                id="is-edit-mode"
-                label="Edit"
-                checked={isEdit}
-                onChange={updateEdit}
-            />
-            {!isEdit ? (
-                `${userName} is ${!isStudent ? "not" : ""} a student`
-            ) : (
+    const renderTarget = () => {
+        if (!isEdit) {
+            return `${userName} is ${!isStudent ? "not" : ""} a student`;
+        } else {
+            return (
                 <div>
                     <Form.Group controlId="formUserName">
                         <Form.Label>Enter your name:</Form.Label>
@@ -43,7 +36,20 @@ export function EditMode(): JSX.Element {
                         onChange={updateStudent}
                     />
                 </div>
-            )}
+            );
+        }
+    };
+
+    return (
+        <div>
+            <Form.Check
+                type="switch"
+                id="is-edit-mode"
+                label="Edit"
+                checked={isEdit}
+                onChange={updateEdit}
+            />
+            {renderTarget()}
         </div>
     );
 }
